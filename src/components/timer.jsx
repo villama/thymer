@@ -13,16 +13,25 @@ class Timer extends Component {
     return (
       <div>
         <h1>Current count: {count}</h1>
+        <button onClick={this.startTimer}>Start</button>
       </div>
     )
   }
 
-  componentDidMount() {
-    this.myInterval = setInterval(() => {
+  startTimer = () => {
+    setInterval(() => {
       this.setState(prevState => ({
         count: prevState.count - 1
       }))
     }, 1000)
+  }
+
+  componentDidMount() {
+    // this.startTimer = setInterval(() => {
+    //   this.setState(prevState => ({
+    //     count: prevState.count - 1
+    //   }))
+    // }, 1000)
   }
 }
 
