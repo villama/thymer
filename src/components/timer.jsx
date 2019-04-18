@@ -15,8 +15,11 @@ class Timer extends Component {
   render() {
     return (
       <div>
-        <h2>timeLeft: {(this.state.timeLeft / 1000).toFixed(1)}</h2>
-        <button onClick={this.timerButtonClicked} name="butt">
+        <h2>
+          timeLeft:
+          <div name="timeLeft">{(this.state.timeLeft / 1000).toFixed(1)}</div>
+        </h2>
+        <button onClick={this.timerButtonClicked} name="timer-button">
           {this.state.buttonLabel}
         </button>
       </div>
