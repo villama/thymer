@@ -16,7 +16,7 @@ class Timer extends Component {
     return (
       <div>
         <h2>timeLeft: {(this.state.timeLeft / 1000).toFixed(1)}</h2>
-        <button onClick={this.timerButtonClicked}>
+        <button onClick={this.timerButtonClicked} name="butt">
           {this.state.buttonLabel}
         </button>
       </div>
