@@ -14,57 +14,89 @@ context("Testing timer", () => {
 
   it("After 0 seconds, timer is full", function() {
     cy.get("[name=timeLeft]").then(startValue => {
-      cy.get("[name=timer-button]").click()
-      cy.get("[name=timer-button]").click()
-      cy.get("[name=timeLeft]").then(endValue => {
-        expect(startValue.text()).to.equal(endValue.text())
-      })
+      cy.get("[name=timer-button]")
+        .click()
+        .then(() => {
+          cy.get("[name=timer-button]")
+            .click()
+            .then(() => {
+              cy.get("[name=timeLeft]").then(endValue => {
+                expect(startValue.text()).to.equal(endValue.text())
+              })
+            })
+        })
     })
   })
 
-  it("After 0.3 seconds, timer is 0.3 seconds less", function() {
+  it("After 1.1 seconds, timer is 1.1 seconds less", function() {
     cy.get("[name=timeLeft]").then(val => {
-      const start = parseFloat(val.text())
-      cy.get("[name=timer-button]").click()
-      cy.wait(300)
-      cy.get("[name=timer-button]").click()
-      cy.get("[name=timeLeft]").then(val => {
-        const end = parseFloat(val.text())
+      const startValue = parseFloat(val.text())
+      cy.get("[name=timer-button]")
+        .click()
+        .then(() => {
+          const startTime = Date.now()
+          cy.wait(1100)
+          cy.get("[name=timer-button]")
+            .click()
+            .then(() => {
+              const endTime = Date.now()
+              cy.get("[name=timeLeft]").then(val => {
+                const endValue = parseFloat(val.text())
 
-        const diff = start - end
-        expect(diff).to.be.closeTo(0.3, 0.001)
-      })
+                const valueDiff = startValue - endValue
+                const timeDiff = (endTime - startTime) / 1000.0
+                expect(valueDiff).to.be.closeTo(timeDiff, 0.1)
+              })
+            })
+        })
     })
   })
 
   it("After 2.1 seconds, timer is 2.1 seconds less", function() {
     cy.get("[name=timeLeft]").then(val => {
-      const start = parseFloat(val.text())
-      cy.get("[name=timer-button]").click()
-      cy.wait(2100)
-      cy.get("[name=timer-button]").click()
-      cy.get("[name=timeLeft]").then(val => {
-        const end = parseFloat(val.text())
+      const startValue = parseFloat(val.text())
+      cy.get("[name=timer-button]")
+        .click()
+        .then(() => {
+          const startTime = Date.now()
+          cy.wait(2100)
+          cy.get("[name=timer-button]")
+            .click()
+            .then(() => {
+              const endTime = Date.now()
+              cy.get("[name=timeLeft]").then(val => {
+                const endValue = parseFloat(val.text())
 
-        const diff = start - end
-        expect(diff).to.be.closeTo(2.1, 0.001)
-      })
+                const valueDiff = startValue - endValue
+                const timeDiff = (endTime - startTime) / 1000.0
+                expect(valueDiff).to.be.closeTo(timeDiff, 0.1)
+              })
+            })
+        })
     })
   })
 
-  it("After 7.9 seconds, timer is 7.9 seconds less", function() {
+  it("After 20 seconds, timer is 20 seconds less", function() {
     cy.get("[name=timeLeft]").then(val => {
       const startValue = parseFloat(val.text())
-      cy.get("[name=timer-button]").click()
-      const startTime = Date.now()
-      cy.wait(7900)
-      cy.get("[name=timer-button]").click()
-      cy.get("[name=timeLeft]").then(val => {
-        const endValue = parseFloat(val.text())
+      cy.get("[name=timer-button]")
+        .click()
+        .then(() => {
+          const startTime = Date.now()
+          cy.wait(20000)
+          cy.get("[name=timer-button]")
+            .click()
+            .then(() => {
+              const endTime = Date.now()
+              cy.get("[name=timeLeft]").then(val => {
+                const endValue = parseFloat(val.text())
 
-        const diff = startValue - endValue
-        expect(diff).to.be.closeTo(7.9, 0.1)
-      })
+                const valueDiff = startValue - endValue
+                const timeDiff = (endTime - startTime) / 1000.0
+                expect(valueDiff).to.be.closeTo(timeDiff, 0.1)
+              })
+            })
+        })
     })
   })
 })
