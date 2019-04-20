@@ -1,4 +1,4 @@
-context("Testing thymer", () => {
+context("Testing timer", () => {
   beforeEach(() => {
     cy.visit("/")
     cy.server({
@@ -54,15 +54,16 @@ context("Testing thymer", () => {
 
   it("After 7.9 seconds, timer is 7.9 seconds less", function() {
     cy.get("[name=timeLeft]").then(val => {
-      const start = parseFloat(val.text())
+      const startValue = parseFloat(val.text())
       cy.get("[name=timer-button]").click()
+      const startTime = Date.now()
       cy.wait(7900)
       cy.get("[name=timer-button]").click()
       cy.get("[name=timeLeft]").then(val => {
-        const end = parseFloat(val.text())
+        const endValue = parseFloat(val.text())
 
-        const diff = start - end
-        expect(diff).to.be.closeTo(7.9, 0.001)
+        const diff = startValue - endValue
+        expect(diff).to.be.closeTo(7.9, 0.1)
       })
     })
   })
