@@ -45,7 +45,7 @@ context("Testing timer", () => {
 
                 const valueDiff = startValue - endValue
                 const timeDiff = (endTime - startTime) / 1000.0
-                expect(valueDiff).to.be.closeTo(timeDiff, 0.1)
+                expect(valueDiff).to.be.closeTo(timeDiff - 0.05, 0.1)
               })
             })
         })
@@ -69,7 +69,7 @@ context("Testing timer", () => {
 
                 const valueDiff = startValue - endValue
                 const timeDiff = (endTime - startTime) / 1000.0
-                expect(valueDiff).to.be.closeTo(timeDiff, 0.1)
+                expect(valueDiff).to.be.closeTo(timeDiff - 0.05, 0.1)
               })
             })
         })
@@ -93,7 +93,7 @@ context("Testing timer", () => {
 
                 const valueDiff = startValue - endValue
                 const timeDiff = (endTime - startTime) / 1000.0
-                expect(valueDiff).to.be.closeTo(timeDiff, 0.1)
+                expect(valueDiff).to.be.closeTo(timeDiff - 0.05, 0.1)
               })
             })
         })
