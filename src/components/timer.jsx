@@ -4,26 +4,60 @@ class Timer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      count: 100
+      timeLeft: 60000,
+      buttonLabel: "Start"
     }
+    this.updateThreadID = null
+    this.lastUpdate = null
+    this.timerState = 0
   }
 
   render() {
-    const { count } = this.state
     return (
       <div>
-        <h1>Current count: {count}</h1>
+        <h2>
+          timeLeft:
+          <div name="timeLeft">{(this.state.timeLeft / 1000).toFixed(1)}</div>
+        </h2>
+        <button onClick={this.timerButtonClicked} name="timer-button">
+          {this.state.buttonLabel}
+        </button>
       </div>
     )
   }
 
-  componentDidMount() {
-    this.myInterval = setInterval(() => {
-      this.setState(prevState => ({
-        count: prevState.count - 1
-      }))
-    }, 1000)
+  timerButtonClicked = () => {
+    if (this.timerState === 0) {
+      // Start the timer
+      this.updateTimeLeft()
+      this.updateThreadID = setInterval(this.updateTimeLeft, 100)
+      this.timerState = 1
+      this.setState({
+        buttonLabel: "Stop"
+      })
+    } else {
+      // Pause the timer
+      clearInterval(this.updateThreadID)
+      this.lastUpdate = null
+      this.timerState = 0
+      this.setState({
+        buttonLabel: "Start"
+      })
+    }
   }
+
+  updateTimeLeft = () => {
+    const currentTime = Date.now()
+    const elapsed = this.lastUpdate == null ? 0 : currentTime - this.lastUpdate
+    this.lastUpdate = currentTime
+    this.setState({
+      timeLeft: this.state.timeLeft - elapsed
+    })
+  }
+
+  componentDidMount() {}
+
+  componentWillUnmount() {}
 }
 
 export default Timer
