@@ -5,6 +5,7 @@ class Timer extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      startTime: 60000,
       timeLeft: 60000,
       buttonLabel: "Start"
     }
@@ -16,7 +17,7 @@ class Timer extends Component {
   render() {
     return (
       <div>
-        <Graphic counter={this.state.timeLeft} />
+        <Graphic percent={this.state.timeLeft / this.state.startTime} />
         <h2>
           timeLeft:
           <div name="timeLeft">{(this.state.timeLeft / 1000).toFixed(1)}</div>
@@ -56,10 +57,6 @@ class Timer extends Component {
       timeLeft: this.state.timeLeft - elapsed
     })
   }
-
-  componentDidMount() {}
-
-  componentWillUnmount() {}
 }
 
 export default Timer

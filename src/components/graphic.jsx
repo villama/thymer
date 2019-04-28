@@ -7,7 +7,7 @@ class Graphic extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Received value: {this.props.counter}</h1>
+        <h1>Percent value: {this.props.percent}</h1>
         <video className="App-image" loop autoPlay muted>
           <source src={image_mp4} type="video/mp4" />
           <source src={image_ogg} type="video/ogg" />
