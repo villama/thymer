@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import Graphic from "./graphic"
 
 class Timer extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ class Timer extends Component {
   render() {
     return (
       <div>
+        <Graphic counter={this.state.timeLeft} />
         <h2>
           timeLeft:
           <div name="timeLeft">{(this.state.timeLeft / 1000).toFixed(1)}</div>
