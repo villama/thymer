@@ -8,13 +8,20 @@ class Graphic extends Component {
     return (
       <React.Fragment>
         <h1>Percent value: {this.props.percent}</h1>
-        <video className="App-image" loop autoPlay muted>
+        <video id="graphic" className="App-image" loop autoPlay muted>
           <source src={image_mp4} type="video/mp4" />
           <source src={image_ogg} type="video/ogg" />
           Your browser does not support the video tag.
         </video>
       </React.Fragment>
     )
+  }
+
+  componentDidMount() {
+    var vid = document.getElementById("graphic")
+    console.log(vid)
+    vid.playbackRate = 0.5
+    vid.oncontextmenu = false
   }
 }
 
