@@ -16,7 +16,7 @@ class Timer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Timer">
         <Graphic percent={this.state.timeLeft / this.state.startTime} />
         <h2>
           timeLeft:
